@@ -1,0 +1,89 @@
+openapi: "3.0.0"
+info:
+  title: Credit Risk API
+  version: 1.0.0
+components:
+  schemas:
+    CreditRisk:
+      $ref: 'https://raw.githubusercontent.com/okomissarov/OpenApiDomains/master/api/fixed-income/v1/schemas.yaml#/components/schemas/credit_risk'
+    BadRequest:
+      $ref: 'https://raw.githubusercontent.com/okomissarov/OpenApiDomains/master/api/common/v1/schemas.yaml#/components/schemas/BadRequest'
+    Unauthorized:
+      $ref: 'https://raw.githubusercontent.com/okomissarov/OpenApiDomains/master/api/common/v1/schemas.yaml#/components/schemas/Unauthorized'
+    Forbidden:
+      $ref: 'https://raw.githubusercontent.com/okomissarov/OpenApiDomains/master/api/common/v1/schemas.yaml#/components/schemas/Forbidden'
+    NotFound:
+      $ref: 'https://raw.githubusercontent.com/okomissarov/OpenApiDomains/master/api/common/v1/schemas.yaml#/components/schemas/NotFound'
+    ServerError:
+      $ref: 'https://raw.githubusercontent.com/okomissarov/OpenApiDomains/master/api/common/v1/schemas.yaml#/components/schemas/ServerError'
+  requestBodies:
+    CreditRiskRequestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreditRisk'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreditRisk'
+    '400':
+      $ref: 'https://raw.githubusercontent.com/okomissarov/OpenApiDomains/master/api/common/v1/schemas.yaml#/components/schemas/BadRequest'
+    '401':
+      $ref: 'https://raw.githubusercontent.com/okomissarov/OpenApiDomains/master/api/common/v1/schemas.yaml#/components/schemas/Unauthorized'
+    '403':
+      $ref: 'https://raw.githubusercontent.com/okomissarov/OpenApiDomains/master/api/common/v1/schemas.yaml#/components/schemas/Forbidden'
+    '404':
+      $ref: 'https://raw.githubusercontent.com/okomissarov/OpenApiDomains/master/api/common/v1/schemas.yaml#/components/schemas/NotFound'
+    '500':
+      $ref: 'https://raw.githubusercontent.com/okomissarov/OpenApiDomains/master/api/common/v1/schemas.yaml#/components/schemas/ServerError'
+paths:
+  /credit-risk:
+    post:
+      requestBody:
+        $ref: '#/components/requestBodies/CreditRiskRequestBody'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditRisk'
+        '400':
+          $ref: 'https://raw.githubusercontent.com/okomissarov/OpenApiDomains/master/api/common/v1/schemas.yaml#/components/schemas/BadRequest'
+        '401':
+          $ref: 'https://raw.githubusercontent.com/okomissarov/OpenApiDomains/master/api/common/v1/schemas.yaml#/components/schemas/Unauthorized'
+        '403':
+          $ref: 'https://raw.githubusercontent.com/okomissarov/OpenApiDomains/master/api/common/v1/schemas.yaml#/components/schemas/Forbidden'
+        '404':
+          $ref: 'https://raw.githubusercontent.com/okomissarov/OpenApiDomains/master/api/common/v1/schemas.yaml#/components/schemas/NotFound'
+        '500':
+          $ref: 'https://raw.githubusercontent.com/okomissarov/OpenApiDomains/master/api/common/v1/schemas.yaml#/components/schemas/ServerError'
+  /credit-risk/{creditRiskId}:
+    get:
+      parameters:
+        - name: creditRiskId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The ID of the credit risk to retrieve.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditRisk'
+        '400':
+          $ref: 'https://raw.githubusercontent.com/okomissarov/OpenApiDomains/master/api/common/v1/schemas.yaml#/components/schemas/BadRequest'
+        '401':
+          $ref: 'https://raw.githubusercontent.com/okomissarov/OpenApiDomains/master/api/common/v1/schemas.yaml#/components/schemas/Unauthorized'
+        '403':
+          $ref: 'https://raw.githubusercontent.com/okomissarov/OpenApiDomains/master/api/common/v1/schemas.yaml#/components/schemas/Forbidden'
+        '404':
+          $ref: 'https://raw.githubusercontent.com/okomissarov/OpenApiDomains/master/api/common/v1/schemas.yaml#/components/schemas/NotFound'
+        '500':
+          $ref: 'https://raw.githubusercontent.com/okomissarov/OpenApiDomains/master/api/common/v1/schemas.yaml#/components/schemas/ServerError'
